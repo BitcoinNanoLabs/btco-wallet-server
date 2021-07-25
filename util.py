@@ -18,13 +18,13 @@ class Util:
 
     def address_decode(self, address : str) -> str:
         """Given a string containing an XRB/NANO/BAN address, confirm validity and provide resulting hex address"""
-        if (address[:4] == 'xrb_' or address[:5] == 'nano_' and not self.banano_mode) or (address[:4] == 'ban_' and self.banano_mode):
+        if (address[:5] == 'btco_' or address[:5] == 'nano_' and not self.banano_mode) or (address[:4] == 'ban_' and self.banano_mode):
             account_map = "13456789abcdefghijkmnopqrstuwxyz"  # each index = binary value, account_lookup[0] == '1'
             account_lookup = {}
             for i in range(0, 32):  # populate lookup index with prebuilt bitarrays ready to append
                 account_lookup[account_map[i]] = BitArray(uint=i, length=5)
             data = address.split('_')[1]
-            acrop_key = data[:-8]  # we want everything after 'xrb_' or 'nano_' but before the 8-char checksum
+            acrop_key = data[:-8]  # we want everything after 'btco_' or 'nano_' but before the 8-char checksum
             acrop_check = data[-8:]  # extract checksum
 
             # convert base-32 (5-bit) values to byte string by appending each 5-bit value to the bitstring,

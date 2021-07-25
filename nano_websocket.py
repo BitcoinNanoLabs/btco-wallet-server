@@ -29,7 +29,7 @@ class WebsocketClient(object):
             await self.ws.recv()  # ack
         except Exception as e:
             if not silent:
-                log.server_logger.critical("NANO WS: Error connecting to websocket server")
+                log.server_logger.critical("BTCO WS: Error connecting to websocket server")
                 log.server_logger.error(traceback.format_exc())
             raise
 
@@ -38,14 +38,14 @@ class WebsocketClient(object):
         await self.ws.wait_closed()
 
     async def reconnect_forever(self):
-        log.server_logger.warning("NANO WS: Attempting websocket reconnection every 30 seconds...")
+        log.server_logger.warning("BTCO WS: Attempting websocket reconnection every 30 seconds...")
         while not self.stop:
             try:
                 await self.setup(silent=True)
-                log.server_logger.warning("NANO WS: Connected to websocket!")
+                log.server_logger.warning("BTCO WS: Connected to websocket!")
                 break
             except:
-                log.server_logger.debug("NANO WS: Websocket reconnection failed")
+                log.server_logger.debug("BTCO WS: Websocket reconnection failed")
                 await asyncio.sleep(30)
 
     async def loop(self):
@@ -58,8 +58,8 @@ class WebsocketClient(object):
             except KeyboardInterrupt:
                 break
             except websockets.exceptions.ConnectionClosed as e:
-                log.server_logger.error(f"NANO WS: Connection closed to websocket. Code: {e.code} , reason: {e.reason}.")
+                log.server_logger.error(f"BTCO WS: Connection closed to websocket. Code: {e.code} , reason: {e.reason}.")
                 await self.reconnect_forever()
             except Exception as e:
-                log.server_logger.critical(f"NANO WS: Unknown exception while handling getting a websocket message:\n{traceback.format_exc()}")
+                log.server_logger.critical(f"BTCO WS: Unknown exception while handling getting a websocket message:\n{traceback.format_exc()}")
                 await self.reconnect_forever()

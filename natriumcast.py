@@ -252,9 +252,9 @@ async def handle_user_message(r : web.Request, message : str, ws : web.WebSocket
                         else:
                             # Legacy connections
                             account = account_list[0]
-                        if account.replace("nano_", "xrb_") in account_list:
-                            account_list.remove(account.replace("nano_", "xrb_"))
-                            account = account.replace('xrb_', 'nano_')
+                        if account.replace("btco_", "nano_") in account_list:
+                            account_list.remove(account.replace("btco_", "nano_"))
+                            account = account.replace('nano_', 'btco_')
                             account_list.append(account)
                             await r.app['rdata'].hset(uid, "account", json.dumps(account_list))
                         await rpc.rpc_reconnect(ws, r, account)
@@ -279,7 +279,7 @@ async def handle_user_message(r : web.Request, message : str, ws : web.WebSocket
                             currency = request_json['currency']
                         else:
                             currency = 'usd'
-                        await rpc.rpc_subscribe(ws, r, request_json['account'].replace("nano_", "xrb_"), currency)
+                        await rpc.rpc_subscribe(ws, r, request_json['account'].replace("btco_", "nano_"), currency)
                         # Store FCM token if available, for push notifications
                         if 'fcm_token' in request_json:
                             await update_fcm_token_for_account(request_json['account'], request_json['fcm_token'], r)
@@ -491,7 +491,7 @@ async def callback_ws(app: web.Application, data: dict):
                         data['is_send'] = 'true'
                         await app['clients'][sub].send_str(json.dumps(data))
         # Send to natrium donations page
-        if data['block']['subtype'] == 'send' and link == 'nano_1natrium1o3z5519ifou7xii8crpxpk8y65qmkih8e8bpsjri651oza8imdd':
+        if data['block']['subtype'] == 'send' and link == 'btco_1natrium1o3z5519ifou7xii8crpxpk8y65qmkih8e8bpsjri651oza8imdd':
             log.server_logger.info('Detected send to natrium account')
             if 'amount' in data:
                 log.server_logger.info(f'emitting donation event for amount: {data["amount"]}')

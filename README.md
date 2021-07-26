@@ -1,12 +1,12 @@
-# Natrium (NANO) and Kalium (BANANO) Wallet Server
+# BTCO Wallet (BTCO)
 
-## What is Natrium, Kalium, NANO, BANANO?
+## What is BTCO Wallet, Kalium, NANO, BANANO?
 
-Natrium and Kalium are mobile wallets written with Flutter. NANO and BANANO are cryptocurrencies.
+BTCO Wallet is mobile wallet written with Flutter. BTCO is cryptocurrencies.
 
 | Link | Description |
 | :----- | :------ |
-[natrium.io](https://natrium.io) | Natrium Homepage
+[natrium.io](https://natrium.io) | BTCO Wallet Homepage
 [kalium.banano.cc](https://kalium.banano.cc) | Kalium Homepage
 [appditto.com](https://appditto.com) | Appditto Homepage
 
@@ -75,7 +75,7 @@ Next, we'll define a systemd service unit
 /etc/systemd/system/natriumcast@.service
 ```
 [Unit]
-Description=Natrium Server
+Description=BTCO Wallet Server
 After=network.target
 
 [Service]

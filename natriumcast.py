@@ -29,7 +29,7 @@ asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 # Configuration arguments
 
-parser = argparse.ArgumentParser(description="Natrium/Kalium Wallet Server")
+parser = argparse.ArgumentParser(description="BTCO Wallet Server")
 parser.add_argument('-b', '--banano', action='store_true', help='Run for BANANO (Kalium-mode)', default=False)
 parser.add_argument('--host', type=str, help='Host to listen on (e.g. 127.0.0.1)', default='127.0.0.1')
 parser.add_argument('--path', type=str, help='(Optional) Path to run application on (for unix socket, e.g. /tmp/natriumapp.sock', default=None)
@@ -543,7 +543,7 @@ async def callback(r : web.Request):
                 )
                 await fcm.send_message(message)
             notification_title = f"Received {util.raw_to_nano(send_amount)} {'NANO' if not banano_mode else 'BANANO'}"
-            notification_body = f"Open {'Natrium' if not banano_mode else 'Kalium'} to view this transaction."
+            notification_body = f"Open {'BTCO Wallet' if not banano_mode else 'Kalium'} to view this transaction."
             for t2 in fcm_tokens_v2:
                 message = aiofcm.Message(
                     device_token = t2,

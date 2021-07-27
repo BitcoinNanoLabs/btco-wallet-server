@@ -1,0 +1,8 @@
+{
+    "work_peers": [
+        "::ffff:127.0.0.1:5555"
+    ],
+    "callback_address": "::ffff:127.0.0.1",
+    "callback_port": "5076",
+    "callback_target": "\/callback"
+}

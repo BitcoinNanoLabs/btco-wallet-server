@@ -6,9 +6,7 @@ BTCO Wallet is mobile wallet written with Flutter. BTCO is cryptocurrencies.
 
 | Link | Description |
 | :----- | :------ |
-[natrium.io](https://natrium.io) | BTCO Wallet Homepage
-[kalium.banano.cc](https://kalium.banano.cc) | Kalium Homepage
-[appditto.com](https://appditto.com) | Appditto Homepage
+[bitcoinnano.org](https://bitcoinnano.org) | BTCO Wallet Homepage
 
 ## Requirements
 

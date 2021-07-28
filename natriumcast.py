@@ -61,7 +61,7 @@ except Exception as e:
     parser.print_help()
     sys.exit(0)
 
-price_prefix = 'coingecko:nano' if not banano_mode else 'coingecko:banano'
+price_prefix = 'coingecko:btco' if not banano_mode else 'coingecko:banano'
 
 # Environment configuration
 
@@ -252,8 +252,8 @@ async def handle_user_message(r : web.Request, message : str, ws : web.WebSocket
                         else:
                             # Legacy connections
                             account = account_list[0]
-                        if account.replace("btco_", "nano_") in account_list:
-                            account_list.remove(account.replace("btco_", "nano_"))
+                        if account in account_list:
+                            account_list.remove(account)
                             account = account.replace('nano_', 'btco_')
                             account_list.append(account)
                             await r.app['rdata'].hset(uid, "account", json.dumps(account_list))
@@ -279,7 +279,7 @@ async def handle_user_message(r : web.Request, message : str, ws : web.WebSocket
                             currency = request_json['currency']
                         else:
                             currency = 'usd'
-                        await rpc.rpc_subscribe(ws, r, request_json['account'].replace("btco_", "nano_"), currency)
+                        await rpc.rpc_subscribe(ws, r, request_json['account'], currency)
                         # Store FCM token if available, for push notifications
                         if 'fcm_token' in request_json:
                             await update_fcm_token_for_account(request_json['account'], request_json['fcm_token'], r)

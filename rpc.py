@@ -161,7 +161,7 @@ class RPC:
         """Send work_generate with use_peers injected"""
         if 'use_peers' not in request_json and self.work_url is None:
             request_json['use_peers'] = True
-        return await self.json_post(request_json, is_work=True)
+        return await self.json_post(request_json, is_work=True, timeout=300)
 
     async def work_defer(self, r : web.Request, uid : str, request_json : dict) -> str:
         """Request work_generate, but avoid duplicate requests"""
@@ -263,7 +263,7 @@ class RPC:
                         'action': 'work_generate',
                         'hash': workbase,
                         'subtype': subtype
-                    })                    
+                    })
                 if work_response is None or 'work' not in work_response:
                     return {
                         'error':'failed work_generate in process request'

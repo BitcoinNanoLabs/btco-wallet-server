@@ -17,7 +17,7 @@ Install requirements on Ubuntu 18.04:
 apt install python3 python3-dev libdpkg-perl virtualenv nginx
 ```
 
-Minimum of one **NANO/BANANO Node** with RPC enabled.
+Minimum of one **NANO/BTCO/BANANO Node** with RPC enabled.
 
 **Redis server** running on the default port 6379
 

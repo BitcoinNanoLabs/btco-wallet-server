@@ -6,7 +6,7 @@ INFINITUM Wallet is mobile wallet written with Flutter. BTCO is cryptocurrencies
 
 | Link | Description |
 | :----- | :------ |
-[bitcoinnano.org](https://bitcoinnano.org) | BTCO Wallet Homepage
+[bitcoinnano.org](https://infinitum.bitcoinnano.org) | Infinitum Wallet Homepage
 
 ## Requirements
 

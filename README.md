@@ -1,8 +1,8 @@
-# BTCO Wallet (BTCO)
+# Infinitum Wallet (BTCO)
 
-## What is BTCO Wallet, Kalium, NANO, BANANO?
+## What is Infinitum, NANO, BANANO, BTCO?
 
-BTCO Wallet is mobile wallet written with Flutter. BTCO is cryptocurrencies.
+INFINITUM Wallet is mobile wallet written with Flutter. BTCO is cryptocurrencies.
 
 | Link | Description |
 | :----- | :------ |

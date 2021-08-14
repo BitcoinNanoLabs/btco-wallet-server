@@ -22,7 +22,7 @@ import aiohttp_cors
 
 from rpc import RPC, allowed_rpc_actions
 from util import Util
-from nano_websocket import WebsocketClient
+from btco_websocket import WebsocketClient
 from alerts import get_active_alert
 
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
@@ -35,7 +35,7 @@ parser.add_argument('--host', type=str, help='Host to listen on (e.g. 127.0.0.1)
 parser.add_argument('--path', type=str, help='(Optional) Path to run application on (for unix socket, e.g. /tmp/natriumapp.sock', default=None)
 parser.add_argument('-p', '--port', type=int, help='Port to listen on', default=5076)
 parser.add_argument('-ws', '--websocket-url', type=str, help='Nano websocket URI', default='ws://[::1]:7078')
-parser.add_argument('--log-file', type=str, help='Log file location', default='natriumcast.log')
+parser.add_argument('--log-file', type=str, help='Log file location', default='infinitumcast.log')
 parser.add_argument('--log-to-stdout', action='store_true', help='Log to stdout', default=False)
 
 options = parser.parse_args()

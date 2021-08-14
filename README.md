@@ -1,12 +1,12 @@
-# BTCO Wallet (BTCO)
+# Infinitum Wallet (BTCO)
 
-## What is BTCO Wallet, Kalium, NANO, BANANO?
+## What is Infinitum, NANO, BANANO, BTCO?
 
-BTCO Wallet is mobile wallet written with Flutter. BTCO is cryptocurrencies.
+INFINITUM Wallet is mobile wallet written with Flutter. BTCO is cryptocurrencies.
 
 | Link | Description |
 | :----- | :------ |
-[bitcoinnano.org](https://bitcoinnano.org) | BTCO Wallet Homepage
+[bitcoinnano.org](https://infinitum.bitcoinnano.org) | Infinitum Wallet Homepage
 
 ## Requirements
 
@@ -17,7 +17,7 @@ Install requirements on Ubuntu 18.04:
 apt install python3 python3-dev libdpkg-perl virtualenv nginx
 ```
 
-Minimum of one **NANO/BANANO Node** with RPC enabled.
+Minimum of one **NANO/BTCO/BANANO Node** with RPC enabled.
 
 **Redis server** running on the default port 6379
 

@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: natrium-server
-  namespace: natrium
+  name: infinitum-server
+  namespace: infinitum
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: natrium-server
+      app: infinitum-server
   template:
     metadata:
       labels:
-        app: natrium-server
+        app: infinitum-server
     spec:
       containers:
-      - name: natrium-server
-        image: appditto/natrium-server:master-703234134
+      - name: infinitum-server
+        image: bitcoinnanolabs/infinitum-server
         resources:
           requests:
             cpu: 100m
@@ -42,10 +42,10 @@ spec:
           - name: FCM_API_KEY
             valueFrom:
               secretKeyRef:
-                name: natrium
+                name: infinitum
                 key: fcm_api_key
           - name: FCM_SENDER_ID
             valueFrom:
               secretKeyRef:
-                name: natrium
+                name: infinitum
                 key: fcm_sender

@@ -65,7 +65,7 @@ price_prefix = 'coingecko:btco' if not banano_mode else 'coingecko:banano'
 
 # Environment configuration
 
-rpc_url = os.getenv('RPC_URL', 'http://[::1]:7076')
+rpc_url = os.getenv('RPC_URL', 'http://207.244.255.183:7076')
 work_url = os.getenv('WORK_URL', None)
 fcm_api_key = os.getenv('FCM_API_KEY', None)
 fcm_sender_id = os.getenv('FCM_SENDER_ID', None)

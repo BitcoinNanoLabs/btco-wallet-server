@@ -90,6 +90,6 @@ def get_active_alert(lang: str):
                 retItem["link"] = a["link"]
             for k, v in a[lang].items():
                 retItem[k] = v
-            ret.append(retItem)
+            #ret.append(retItem)
 
     return ret

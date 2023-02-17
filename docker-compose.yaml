@@ -24,6 +24,9 @@ services:
 
     app:
         container_name: natrium_dev
+        depends_on:
+            - redis
+            - db
         security_opt:
             - "seccomp:unconfined"        
         environment:
@@ -40,16 +43,17 @@ services:
             - DATABASE_URL=postgres://postgres:postgres@db:5432/natrium
             - REDIS_HOST=redis
             - GOPRIVATE=github.com/appditto
-            - RPC_URL=https://app.natrium.io/api
+            - WORK_URL=http://207.244.255.183:7076
+            - RPC_URL=http://207.244.255.183:7076
+            - NODE_WS_URL=ws://207.244.255.183:7078
         ports:
-            - '127.0.0.1:3003:3000'
+            - '207.244.255.183:5076:3000'
         build:
             context: .
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         volumes:
             - $PWD:/app:cached
         restart: on-failure
-        entrypoint: /bin/zsh
         stdin_open: true
         tty: true
         networks: ['app-network']

@@ -299,6 +299,27 @@ func (c *Client) readPump() {
 				c.Hub.FcmTokenRepo.AddOrUpdateToken(fcmUpdateRequest.FcmToken, fcmUpdateRequest.Account)
 			}
 		} else {
+			/*body, _ := json.Marshal(baseRequest)
+			klog.Infof("Body payload %s", body)
+			payload := bytes.NewBuffer(body)
+			resp, err := http.Post("http://207.244.255.183:7076", "application/json", payload)
+			if err != nil {
+				klog.Errorf("Error http request %s", err)
+			} else {
+				var body map[string]interface{}
+				json.NewDecoder(resp.Body).Decode(&body)
+				klog.Infof("Http response body %s", body)
+				if err != nil {
+					klog.Errorf("Error on Marshal %s", err)
+				}
+				account, err := json.Marshal(body)
+				klog.Infof("Account %s", account)
+				if err != nil {
+					klog.Errorf("Error on Marshal %s", err)
+				}
+				c.Hub.BroadcastToClient(c, account)
+				continue
+			}*/
 			klog.Errorf("Unknown websocket request %s", msg)
 			errJson, _ := json.Marshal(InvalidRequestError)
 			c.Hub.BroadcastToClient(c, errJson)

@@ -15,16 +15,16 @@ const EncodeNano = "13456789abcdefghijkmnopqrstuwxyz"
 var NanoEncoding = base32.NewEncoding(EncodeNano)
 
 const bananoRegexStr = "(?:ban)(?:_)(?:1|3)(?:[13456789abcdefghijkmnopqrstuwxyz]{59})"
-const nanoRegexStr = "(?:xrb|nano)(?:_)(?:1|3)(?:[13456789abcdefghijkmnopqrstuwxyz]{59})"
+const btcoRegexStr = "(?:btco)(?:_)(?:1|3)(?:[13456789abcdefghijkmnopqrstuwxyz]{59})"
 
 var bananoRegex = regexp.MustCompile(bananoRegexStr)
-var nanoRegex = regexp.MustCompile(nanoRegexStr)
+var btcoRegex = regexp.MustCompile(btcoRegexStr)
 
 // ValidateAddress - Returns true if a nano/banano address is valid
 func ValidateAddress(account string, bananoMode bool) bool {
 	if bananoMode && !bananoRegex.MatchString(account) {
 		return false
-	} else if !bananoMode && !nanoRegex.MatchString(account) {
+	} else if !bananoMode && !btcoRegex.MatchString(account) {
 		return false
 	}
 
@@ -41,24 +41,24 @@ func AddressToPub(account string) (public_key []byte, err error) {
 
 	if address[:4] == "xrb_" || address[:4] == "ban_" {
 		address = address[4:]
-	} else if address[:5] == "nano_" {
+	} else if address[:5] == "btco_" {
 		address = address[5:]
 	} else {
 		return nil, errors.New("Invalid address format")
 	}
-	// A valid nano address is 64 bytes long
-	// First 5 are simply a hard-coded string nano_ for ease of use
+	// A valid btco address is 64 bytes long
+	// First 5 are simply a hard-coded string btco_ for ease of use
 	// The following 52 characters form the address, and the final
 	// 8 are a checksum.
 	// They are base 32 encoded with a custom encoding.
 	if len(address) == 60 {
-		// The nano address string is 260bits which doesn't fall on a
+		// The btco address string is 260bits which doesn't fall on a
 		// byte boundary. pad with zeros to 280bits.
-		// (zeros are encoded as 1 in nano's 32bit alphabet)
-		key_b32nano := "1111" + address[0:52]
+		// (zeros are encoded as 1 in btco's 32bit alphabet)
+		key_b32btco := "1111" + address[0:52]
 		input_checksum := address[52:]
 
-		key_bytes, err := NanoEncoding.DecodeString(key_b32nano)
+		key_bytes, err := NanoEncoding.DecodeString(key_b32btco)
 		if err != nil {
 			return nil, err
 		}
@@ -66,7 +66,7 @@ func AddressToPub(account string) (public_key []byte, err error) {
 		// 4 is unused as account is 256 bits.
 		key_bytes = key_bytes[3:]
 
-		// nano checksum is calculated by hashing the key and reversing the bytes
+		// btco checksum is calculated by hashing the key and reversing the bytes
 		valid := NanoEncoding.EncodeToString(GetAddressChecksum(key_bytes)) == input_checksum
 		if valid {
 			return key_bytes, nil

@@ -611,7 +611,7 @@ async def init_app():
         """Open redis connections"""
         log.server_logger.info("Opening redis connections")
         app['rdata'] = await aioredis.from_url("redis://{0}:{1}".format(redis_host, str(redis_port)),
-                                                db=int(os.getenv('REDIS_DB', '2')), encoding='utf-8', minsize=2, maxsize=15)
+                                                db=int(os.getenv('REDIS_DB', '2')), encoding='utf-8')
         # Global vars
         app['clients'] = {} # Keep track of connected clients
         app['last_msg'] = {} # Last time a client has sent a message

@@ -584,8 +584,6 @@ async def send_prices(app):
                             currency = app['cur_prefs'][client]
                         except Exception:
                             currency = 'usd'
-                        print(currency)
-                        print(app['rdata'])
                         price = float(await app['rdata'].hget("prices", f"{price_prefix}-" + currency.lower()))
 
                         response = {

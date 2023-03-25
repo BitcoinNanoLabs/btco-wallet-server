@@ -114,7 +114,7 @@ async def get_or_upgrade_token_account_list(account : str, token : str, r : web.
             return curToken
         except Exception:
             curToken = curTokenList
-            await redisInst.set(token, json.dumps([curToken]), expire=2592000)
+            await redisInst.set(token, json.dumps([curToken]))
             if account != curToken:
                 return []
     return json.loads(await redisInst.get(token))
@@ -123,16 +123,16 @@ async def set_or_upgrade_token_account_list(account : str, token : str, r : web.
     redisInst = r.app['rdata']
     curTokenList = await redisInst.get(token)
     if curTokenList is None:
-        await redisInst.set(token, json.dumps([account]), expire=2592000) 
+        await redisInst.set(token, json.dumps([account])) 
     else:
         try:
             curToken = json.loads(curTokenList)
             if account not in curToken:
                 curToken.append(account)
-                await redisInst.set(token, json.dumps(curToken), expire=2592000)
+                await redisInst.set(token, json.dumps(curToken))
         except Exception as e:
             curToken = curTokenList
-            await redisInst.set(token, json.dumps([curToken]), expire=2592000)
+            await redisInst.set(token, json.dumps([curToken]))
     return json.loads(await redisInst.get(token))
 
 async def get_fcm_tokens(account : str, r : web.Request, v2 : bool = False) -> list:

@@ -610,7 +610,7 @@ async def init_app():
     async def open_redis(app):
         """Open redis connections"""
         log.server_logger.info("Opening redis connections")
-        app['rdata'] = await aioredis.create_redis_pool((redis_host, redis_port),
+        app['rdata'] = await aioredis.from_url("redis://{0}:{1}".format(redis_host, str(redis_port)),
                                                 db=int(os.getenv('REDIS_DB', '2')), encoding='utf-8', minsize=2, maxsize=15)
         # Global vars
         app['clients'] = {} # Keep track of connected clients

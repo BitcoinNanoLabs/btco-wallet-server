@@ -196,7 +196,7 @@ class RPC:
             if block['link'].replace('0', '') == '':
                 is_change = True
             else:
-                await r.app['rdata'].set(f"link_{block['link']}", "1", expire=3600)
+                await r.app['rdata'].set(f"link_{block['link']}", "1")
 
         # check for receive race condition
         # if block['type'] == 'state' and block['previous'] and block['balance'] and block['link']:

@@ -251,7 +251,7 @@ class RPC:
                 else:
                     workbase = block['previous']
                 if self.banano_mode:
-                    difficulty = 'fffffe0000000000'
+                    difficulty = 'ffc0000000000000'
                     work_response = await self.work_request({
                         'action': 'work_generate',
                         'hash': workbase,

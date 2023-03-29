@@ -66,7 +66,7 @@ price_prefix = 'coingecko:btco' if not banano_mode else 'coingecko:banano'
 # Environment configuration
 
 rpc_url = os.getenv('RPC_URL', 'http://api.bitcoinnano.org:7076')
-work_url = os.getenv('WORK_URL', None)
+work_url = os.getenv('WORK_URL', 'https://worker.bitcoinnano.org')
 fcm_api_key = os.getenv('FCM_API_KEY', None)
 fcm_sender_id = os.getenv('FCM_SENDER_ID', None)
 debug_mode = True if int(os.getenv('DEBUG', 1)) != 0 else False
